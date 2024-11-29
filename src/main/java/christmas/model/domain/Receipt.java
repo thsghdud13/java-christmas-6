@@ -49,4 +49,31 @@ public class Receipt {
         return totalMoneyNoBenefit.sub(totalBenefit);
     }
 
+    public Money getTotalMoneyNoBenefit() {
+        return totalMoneyNoBenefit;
+    }
+
+    public Money getTotalBenefit() {
+        return totalBenefit;
+    }
+
+    public Money getTotalPayment() {
+        return totalPayment;
+    }
+
+    public List<Discount> getDiscounts() {
+        return discounts;
+    }
+
+    public List<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
 }
