@@ -20,4 +20,8 @@ public class Menu {
     public Money getPrice() {
         return price;
     }
+
+    public MenuType getMenuType() {
+        return menuType;
+    }
 }
