@@ -13,6 +13,14 @@ public class Reservation {
     private List<OrderItem> orderItems;
     private LocalDate reserveDate;
 
+    public Reservation(List<DiscountPolicy> discountPolicies, List<PromotionPolicy> promotionPolicies,
+                       List<OrderItem> orderItems, LocalDate reserveDate) {
+        this.discountPolicies = discountPolicies;
+        this.promotionPolicies = promotionPolicies;
+        this.orderItems = orderItems;
+        this.reserveDate = reserveDate;
+    }
+
     public Receipt getReceipt() {
         List<Discount> discountResults = discountPolicies.stream()
                 .map(d -> d.getDiscountAmount(this))
@@ -21,5 +29,9 @@ public class Reservation {
                 .map(d -> d.getPromotion(this))
                 .toList();
         return new Receipt(orderItems, discountResults, promotionResults);
+    }
+
+    public LocalDate getReserveDate() {
+        return reserveDate;
     }
 }
