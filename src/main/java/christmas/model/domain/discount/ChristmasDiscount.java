@@ -1,5 +1,6 @@
 package christmas.model.domain.discount;
 
+import christmas.model.domain.EventValidator;
 import christmas.model.domain.Reservation;
 import christmas.model.vo.Money;
 import java.time.LocalDate;
@@ -12,11 +13,12 @@ public class ChristmasDiscount implements DiscountPolicy {
 
     @Override
     public Discount getDiscountAmount(Reservation reservation) {
-        LocalDate reserveDate = reservation.getReserveDate();
-        int count;
-        if (reserveDate.isBefore(startDate) || reserveDate.isAfter(endDate)) {
+        if (!EventValidator.validate(startDate, endDate, reservation)) {
             return new Discount(DiscountType.CHRISTMAS, new Money(0));
         }
+        LocalDate reserveDate = reservation.getReserveDate();
+        int count;
+
         count = reserveDate.getDayOfMonth() - startDate.getDayOfMonth();
         Money addtionalMoney = new Money(count * growthRate);
         return new Discount(DiscountType.CHRISTMAS, baseMoney.add(addtionalMoney));

@@ -1,5 +1,6 @@
 package christmas.model.domain.discount;
 
+import christmas.model.domain.EventValidator;
 import christmas.model.domain.OrderItem;
 import christmas.model.domain.Reservation;
 import christmas.model.domain.menu.MenuType;
@@ -15,7 +16,7 @@ public class WeekendDiscount implements DiscountPolicy {
     @Override
     public Discount getDiscountAmount(Reservation reservation) {
         LocalDate reserveDate = reservation.getReserveDate();
-        if (reserveDate.isBefore(startDate) || reserveDate.isAfter(endDate)) {
+        if (!EventValidator.validate(startDate, endDate, reservation)) {
             return new Discount(DiscountType.WEEKEND, new Money(0));
         }
         if (reserveDate.getDayOfWeek().getValue() <= 4 || reserveDate.getDayOfWeek().getValue() == 7) {

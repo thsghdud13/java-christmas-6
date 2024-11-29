@@ -19,7 +19,7 @@ class WeekdayDiscountTest {
     public void 평일_할인_테스트(int year, int month, int dayOfMonth, int dessertCount, int result) {
         //given
         LocalDate testDate = LocalDate.of(year, month, dayOfMonth);
-        Menu menu = new Menu(MenuType.DESSERT, new Money(1000), "케이크");
+        Menu menu = new Menu(MenuType.DESSERT, new Money(10000), "케이크");
         OrderItem orderItem = new OrderItem(menu, dessertCount);
         Reservation reservation = new Reservation(null, null, List.of(orderItem), testDate);
 
