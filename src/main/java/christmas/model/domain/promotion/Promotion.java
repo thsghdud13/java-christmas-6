@@ -15,4 +15,12 @@ public class Promotion {
     public Money getPromotionAmount() {
         return promotionMenu.getPrice().multiply(count);
     }
+
+    public Menu getPromotionMenu() {
+        return promotionMenu;
+    }
+
+    public int getCount() {
+        return count;
+    }
 }
