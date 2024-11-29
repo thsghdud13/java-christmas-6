@@ -1,6 +1,7 @@
 package christmas.model.domain;
 
 import christmas.model.domain.menu.Menu;
+import christmas.model.domain.menu.MenuType;
 import christmas.model.vo.Money;
 
 public class OrderItem {
@@ -22,5 +23,9 @@ public class OrderItem {
 
     public int getCount() {
         return count;
+    }
+
+    public MenuType getMenuType() {
+        return menu.getMenuType();
     }
 }
