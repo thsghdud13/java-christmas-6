@@ -4,6 +4,7 @@ import christmas.model.domain.discount.Discount;
 import christmas.model.domain.discount.DiscountPolicy;
 import christmas.model.domain.promotion.Promotion;
 import christmas.model.domain.promotion.PromotionPolicy;
+import christmas.model.vo.Money;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -37,5 +38,13 @@ public class Reservation {
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
+    }
+
+    public Money getTotalOrderMoney() {
+        return new Money(orderItems.stream()
+                .mapToInt(
+                        o ->
+                                o.getMenuPrice().multiply(o.getCount()).value()
+                ).sum());
     }
 }
