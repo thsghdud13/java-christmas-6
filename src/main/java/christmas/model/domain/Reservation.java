@@ -34,4 +34,8 @@ public class Reservation {
     public LocalDate getReserveDate() {
         return reserveDate;
     }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
 }
