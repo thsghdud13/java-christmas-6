@@ -10,4 +10,8 @@ public class Discount {
         this.discountType = discountType;
         this.discountAmount = discountAmount;
     }
+
+    public Money getDiscountAmount() {
+        return discountAmount;
+    }
 }
