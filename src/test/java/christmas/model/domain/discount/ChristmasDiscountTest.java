@@ -11,7 +11,7 @@ class ChristmasDiscountTest {
     ChristmasDiscount christmasDiscount = new ChristmasDiscount();
 
     @ParameterizedTest
-    @CsvSource(value = {"12,5,1400", "12,31,4000", "11,5,0"})
+    @CsvSource(value = {"12,5,1400", "12,25,3400", "11,5,0", "12,31,0"})
     public void 크리스마스_할인_테스트(int month, int dayOfMonth, int result) {
         //given
         LocalDate testDate = LocalDate.of(2023, month, dayOfMonth);

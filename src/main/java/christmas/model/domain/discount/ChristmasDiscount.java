@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class ChristmasDiscount implements DiscountPolicy {
     private final LocalDate startDate = LocalDate.of(2023, 12, 1);
-    private final LocalDate endDate = LocalDate.of(2023, 12, 31);
+    private final LocalDate endDate = LocalDate.of(2023, 12, 25);
     private final Money baseMoney = new Money(1000);
     private final int growthRate = 100;
 
