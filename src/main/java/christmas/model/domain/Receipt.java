@@ -17,11 +17,20 @@ public class Receipt {
     public Receipt(List<OrderItem> orderItems, List<Discount> discounts, List<Promotion> promotions) {
         this.discounts = discounts;
         this.promotions = promotions;
-        this.orderItems = orderItems;
+        this.orderItems = calculateOrderItems(orderItems);
         this.totalMoneyNoBenefit = calculateTotalMoneyNoBenefit();
         this.totalBenefit = calculateTotalBenefit();
         this.badge = Badge.getBadge(totalBenefit);
         this.totalPayment = calculateTotalPayment();
+    }
+
+    private List<OrderItem> calculateOrderItems(List<OrderItem> orderItems) {
+        List<OrderItem> promotionOrderItem = promotions.stream()
+                .filter(p -> p.getCount() > 0)
+                .map(p -> new OrderItem(p.getPromotionMenu(), p.getCount()))
+                .toList();
+        orderItems.addAll(promotionOrderItem);
+        return orderItems;
     }
 
     private Money calculateTotalMoneyNoBenefit() {
