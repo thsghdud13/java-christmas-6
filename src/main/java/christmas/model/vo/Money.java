@@ -32,4 +32,9 @@ public record Money(int value) implements Comparable<Money> {
     public Money sub(Money money) {
         return new Money(value - money.value());
     }
+
+    @Override
+    public int value() {
+        return value;
+    }
 }
