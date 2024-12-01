@@ -22,7 +22,7 @@ public class SpecialDiscount implements DiscountPolicy {
     }
 
     @Override
-    public Discount getDiscountAmount(Reservation reservation) {
+    public Discount getDiscount(Reservation reservation) {
         if (!EventValidator.validate(startDate, endDate, reservation)) {
             return new Discount(DiscountType.SPECIAL, new Money(0));
         }

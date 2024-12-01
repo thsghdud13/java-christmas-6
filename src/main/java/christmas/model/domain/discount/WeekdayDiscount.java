@@ -14,7 +14,7 @@ public class WeekdayDiscount implements DiscountPolicy {
     private final Money discountAmount = new Money(2023);
 
     @Override
-    public Discount getDiscountAmount(Reservation reservation) {
+    public Discount getDiscount(Reservation reservation) {
         LocalDate reserveDate = reservation.getReserveDate();
         if (!EventValidator.validate(startDate, endDate, reservation)) {
             return new Discount(DiscountType.WEEKDAY, new Money(0));

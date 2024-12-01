@@ -12,7 +12,7 @@ public class ChristmasDiscount implements DiscountPolicy {
     private final int growthRate = 100;
 
     @Override
-    public Discount getDiscountAmount(Reservation reservation) {
+    public Discount getDiscount(Reservation reservation) {
         if (!EventValidator.validate(startDate, endDate, reservation)) {
             return new Discount(DiscountType.CHRISTMAS, new Money(0));
         }
