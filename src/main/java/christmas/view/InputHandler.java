@@ -25,7 +25,7 @@ public class InputHandler {
         }
     }
 
-    public List<OrderItemDto> getOrders() {
+    public static List<OrderItemDto> getOrders() {
         return handleUserInput(InputHandler::getOrderItemDto);
     }
 
