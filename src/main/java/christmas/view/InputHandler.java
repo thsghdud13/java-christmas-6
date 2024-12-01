@@ -3,21 +3,20 @@ package christmas.view;
 
 import christmas.dto.OrderItemDto;
 import christmas.util.StringParser;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputHandler {
-    public static LocalDate getDate() {
+    public static int getDay() {
         return handleUserInput(InputHandler::getReservationDate);
     }
 
-    private static LocalDate getReservationDate() {
+    private static int getReservationDate() {
         int day = StringParser.parseInt(InputView.readDate());
         validateDate(day);
-        return LocalDate.of(2023, 12, day);
+        return day;
     }
 
     private static void validateDate(int day) {
