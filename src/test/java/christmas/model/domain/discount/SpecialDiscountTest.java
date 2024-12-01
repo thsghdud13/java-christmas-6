@@ -24,7 +24,7 @@ class SpecialDiscountTest {
         Reservation reservation = new Reservation(null, null, List.of(orderItem), testDate);
 
         //when
-        Discount discountAmount = specialDiscount.getDiscountAmount(reservation);
+        Discount discountAmount = specialDiscount.getDiscount(reservation);
 
         //then
         Assertions.assertThat(new Money(result))

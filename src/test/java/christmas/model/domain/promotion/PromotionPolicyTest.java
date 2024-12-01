@@ -15,7 +15,7 @@ class PromotionPolicyTest {
     PromotionPolicy promotionPolicy = new PromotionPolicy(new Menu(MenuType.BEVERAGE, new Money(25000), "샴페인"), 1);
 
     @ParameterizedTest
-    @CsvSource(value = {"2023,12,7,12,1", "2023,12,3,11,0", "2023,10,8,23,0", "2024,1,1,30,0"})
+    @CsvSource(value = {"2023,12,7,12,1", "2023,12,3,11,0", "2023,10,8,13,0", "2024,1,1,3,0"})
     public void 증정_할인_테스트(int year, int month, int dayOfMonth, int menuCount, int count) {
         //given
         LocalDate testDate = LocalDate.of(year, month, dayOfMonth);

@@ -15,7 +15,7 @@ class WeekendDiscountTest {
     WeekendDiscount weekendDiscount = new WeekendDiscount();
 
     @ParameterizedTest
-    @CsvSource(value = {"2023,12,7,2,0", "2023,12,3,1,0", "2023,12,8,2,4046", "2023,10,8,23,0", "2024,1,1,30,0"})
+    @CsvSource(value = {"2023,12,7,2,0", "2023,12,3,1,0", "2023,12,8,2,4046", "2023,10,8,13,0", "2024,1,1,20,0"})
     public void 평일_할인_테스트(int year, int month, int dayOfMonth, int dessertCount, int result) {
         //given
         LocalDate testDate = LocalDate.of(year, month, dayOfMonth);
@@ -24,7 +24,7 @@ class WeekendDiscountTest {
         Reservation reservation = new Reservation(null, null, List.of(orderItem), testDate);
 
         //when
-        Discount discount = weekendDiscount.getDiscountAmount(reservation);
+        Discount discount = weekendDiscount.getDiscount(reservation);
 
         //then
         Assertions.assertThat(new Money(result))

@@ -25,8 +25,8 @@ class ReservationTest {
         //given
         List<DiscountPolicy> discountPolicies = List.of(new ChristmasDiscount(), new WeekdayDiscount(),
                 new WeekendDiscount(), new SpecialDiscount());
-        List<PromotionPolicy> promotionPolicies = List.of(
-                new PromotionPolicy(new Menu(MenuType.BEVERAGE, new Money(25000), "샴페인"), 1));
+        PromotionPolicy promotionPolicies =
+                new PromotionPolicy(new Menu(MenuType.BEVERAGE, new Money(25000), "샴페인"), 1);
         Menu menu = new Menu(MenuType.MAIN, new Money(20000), "고기");
         List<OrderItem> orderItems = new ArrayList<>();
         orderItems.add(new OrderItem(menu, menuCount));
@@ -48,8 +48,8 @@ class ReservationTest {
         //given
         List<DiscountPolicy> discountPolicies = List.of(new ChristmasDiscount(), new WeekdayDiscount(),
                 new WeekendDiscount(), new SpecialDiscount());
-        List<PromotionPolicy> promotionPolicies = List.of(
-                new PromotionPolicy(new Menu(MenuType.BEVERAGE, new Money(25000), "샴페인"), 1));
+        PromotionPolicy promotionPolicies =
+                new PromotionPolicy(new Menu(MenuType.BEVERAGE, new Money(25000), "샴페인"), 1);
         Menu menu = new Menu(MenuType.BEVERAGE, new Money(20000), "술");
         List<OrderItem> orderItems = new ArrayList<>();
         orderItems.add(new OrderItem(menu, 3));
@@ -67,8 +67,8 @@ class ReservationTest {
         //given
         List<DiscountPolicy> discountPolicies = List.of(new ChristmasDiscount(), new WeekdayDiscount(),
                 new WeekendDiscount(), new SpecialDiscount());
-        List<PromotionPolicy> promotionPolicies = List.of(
-                new PromotionPolicy(new Menu(MenuType.BEVERAGE, new Money(25000), "샴페인"), 1));
+        PromotionPolicy promotionPolicies =
+                new PromotionPolicy(new Menu(MenuType.BEVERAGE, new Money(25000), "샴페인"), 1);
         Menu menu = new Menu(MenuType.MAIN, new Money(20000), "술");
         List<OrderItem> orderItems = new ArrayList<>();
         orderItems.add(new OrderItem(menu, 21));
