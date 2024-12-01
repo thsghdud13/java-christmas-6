@@ -7,7 +7,7 @@ public enum MenuType {
     BEVERAGE;
 
     public static MenuType of(String typeName) {
-        if (typeName.equals("에피타이저")) {
+        if (typeName.equals("애피타이저")) {
             return APPETIZER;
         }
         if (typeName.equals("메인")) {
