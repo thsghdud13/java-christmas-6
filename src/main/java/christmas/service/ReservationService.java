@@ -27,8 +27,7 @@ public class ReservationService {
     public Reservation reserve(ReservationRequestDto reservationRequestDto) {
         List<DiscountPolicy> discountPolicies = List.of(new ChristmasDiscount(), new WeekdayDiscount(),
                 new WeekendDiscount(), new SpecialDiscount());
-        List<PromotionPolicy> promotionPolicies = List.of(
-                new PromotionPolicy(new Menu(MenuType.BEVERAGE, new Money(25000), "샴페인"), 1));
+        PromotionPolicy promotionPolicy = new PromotionPolicy(new Menu(MenuType.BEVERAGE, new Money(25000), "샴페인"), 1);
         List<OrderItem> orderItems = reservationRequestDto.getOrderItemDtos().stream()
                 .map(o -> {
                             Menu menu = menuRepository.findByName(o.getMenuName())
@@ -38,6 +37,6 @@ public class ReservationService {
 
                 ).toList();
         LocalDate reserveDate = LocalDate.of(2023, 12, reservationRequestDto.getDayOfMonth());
-        return new Reservation(discountPolicies, promotionPolicies, orderItems, reserveDate);
+        return new Reservation(discountPolicies, promotionPolicy, orderItems, reserveDate);
     }
 }

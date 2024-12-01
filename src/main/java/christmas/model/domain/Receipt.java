@@ -10,27 +10,18 @@ public class Receipt {
     private Money totalBenefit;
     private Money totalPayment;
     private List<Discount> discounts;
-    private List<Promotion> promotions;
+    private Promotion promotion;
     private Badge badge;
     private List<OrderItem> orderItems;
 
-    public Receipt(List<OrderItem> orderItems, List<Discount> discounts, List<Promotion> promotions) {
+    public Receipt(List<OrderItem> orderItems, List<Discount> discounts, Promotion promotion) {
         this.discounts = discounts;
-        this.promotions = promotions;
-        this.orderItems = calculateOrderItems(orderItems);
+        this.promotion = promotion;
+        this.orderItems = orderItems;
         this.totalMoneyNoBenefit = calculateTotalMoneyNoBenefit();
         this.totalBenefit = calculateTotalBenefit();
         this.badge = Badge.getBadge(totalBenefit);
         this.totalPayment = calculateTotalPayment();
-    }
-
-    private List<OrderItem> calculateOrderItems(List<OrderItem> orderItems) {
-        List<OrderItem> promotionOrderItem = promotions.stream()
-                .filter(p -> p.getCount() > 0)
-                .map(p -> new OrderItem(p.getPromotionMenu(), p.getCount()))
-                .toList();
-        orderItems.addAll(promotionOrderItem);
-        return orderItems;
     }
 
     private Money calculateTotalMoneyNoBenefit() {
@@ -46,16 +37,13 @@ public class Receipt {
                 .mapToInt(
                         d -> d.getDiscountAmount().value()
                 ).sum());
-        Money promotionAmount = new Money(promotions.stream()
-                .mapToInt(
-                        p -> p.getPromotionAmount().value()
-                ).sum());
+        Money promotionAmount = promotion.getPromotionAmount();
 
         return discountAmount.add(promotionAmount);
     }
 
     private Money calculateTotalPayment() {
-        return totalMoneyNoBenefit.sub(totalBenefit);
+        return totalMoneyNoBenefit.sub(totalBenefit).add(promotion.getPromotionAmount());
     }
 
     public Money getTotalMoneyNoBenefit() {
@@ -74,8 +62,8 @@ public class Receipt {
         return discounts;
     }
 
-    public List<Promotion> getPromotions() {
-        return promotions;
+    public Promotion getPromotion() {
+        return promotion;
     }
 
     public Badge getBadge() {

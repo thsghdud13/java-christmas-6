@@ -14,4 +14,8 @@ public class Discount {
     public Money getDiscountAmount() {
         return discountAmount;
     }
+
+    public String getDiscountTypeName() {
+        return discountType.getName();
+    }
 }

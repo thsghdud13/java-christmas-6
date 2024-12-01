@@ -11,14 +11,14 @@ import java.util.List;
 
 public class Reservation {
     private List<DiscountPolicy> discountPolicies;
-    private List<PromotionPolicy> promotionPolicies;
+    private PromotionPolicy promotionPolicy;
     private List<OrderItem> orderItems;
     private LocalDate reserveDate;
 
-    public Reservation(List<DiscountPolicy> discountPolicies, List<PromotionPolicy> promotionPolicies,
+    public Reservation(List<DiscountPolicy> discountPolicies, PromotionPolicy promotionPolicy,
                        List<OrderItem> orderItems, LocalDate reserveDate) {
         this.discountPolicies = discountPolicies;
-        this.promotionPolicies = promotionPolicies;
+        this.promotionPolicy = promotionPolicy;
         this.orderItems = orderItems;
         this.reserveDate = reserveDate;
         validateMenuType();
@@ -27,12 +27,11 @@ public class Reservation {
 
     public Receipt getReceipt() {
         List<Discount> discountResults = discountPolicies.stream()
-                .map(d -> d.getDiscountAmount(this))
+                .map(d -> d.getDiscount(this))
+                .filter(d -> !d.getDiscountAmount().equals(new Money(0)))
                 .toList();
-        List<Promotion> promotionResults = promotionPolicies.stream()
-                .map(d -> d.getPromotion(this))
-                .toList();
-        return new Receipt(orderItems, discountResults, promotionResults);
+        Promotion promotion = promotionPolicy.getPromotion(this);
+        return new Receipt(orderItems, discountResults, promotion);
     }
 
     public void validateMenuType() {

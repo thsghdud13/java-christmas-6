@@ -2,6 +2,10 @@ package christmas.model.vo;
 
 public record Money(int value) implements Comparable<Money> {
 
+    public static Money of(int value) {
+        return new Money(value);
+    }
+
     public Money {
         validateValue(value);
     }

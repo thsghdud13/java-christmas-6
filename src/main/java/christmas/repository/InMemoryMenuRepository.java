@@ -28,7 +28,7 @@ public class InMemoryMenuRepository implements MenuRepository {
 
     @Override
     public Optional<Menu> findByName(String name) {
-        return Optional.of(menuHashMap.get(name));
+        return Optional.ofNullable(menuHashMap.get(name));
     }
 
 }
